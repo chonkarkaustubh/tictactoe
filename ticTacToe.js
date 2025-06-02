@@ -14,8 +14,10 @@ function reset() {
     turnO = false;
     turnX = true;
     gameover = false;
-    let message = document.getElementById("message");
-    message.style.display = "none";
+    let countermessage = document.getElementById("countermessage");
+    let winnermessage = document.getElementById("winnermessage");
+    countermessage.style.display = "none";
+    winnermessage.style.display = "none";
 }
 
 function checkWin() {
@@ -52,9 +54,13 @@ boxes.forEach((box, index) => {
             const winner = checkWin();
             if (winner) {
                 alert(`${winner} wins!`);
-                let message = document.getElementById("message");
-                message.style.display = 'block';
+                let countermessage = document.getElementById("countermessage");
+                let winnermessage = document.getElementById("winnermessage");
+                countermessage.style.display = 'block';
+                winnermessage.style.display = "block";
                 let counter = document.getElementById("counter");
+                let winnerName = document.getElementById("winner");
+                winnerName.innerHTML = winner;
                 let setCounter = 5;
                 counter.innerText = setCounter;
                 let countdown = setInterval(() => {
@@ -62,7 +68,8 @@ boxes.forEach((box, index) => {
                     counter.innerText = setCounter;
                     if (setCounter == 0 && gameover) {
                         clearInterval(countdown);
-                        message.style.display = "none";
+                        countermessage.style.display = "none";
+                        winnermessage.style.display = "none";
                         reset();
                     }
                 }, 1000);

@@ -29,7 +29,7 @@ body{
     font-size: 8vmin;
     color: #b0413b;
 }
-#message{
+.message{
     font-size: 2rem;
     margin-top: 1rem;
     color: #5edcba;
