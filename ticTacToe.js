@@ -4,6 +4,7 @@ let resetbtn = document.getElementById('resetbtn');
 let turnO = false;
 let turnX = true;
 let gameover = false;
+let clicks = 9;
 
 function reset() {
     boxes.forEach((box) => {
@@ -39,6 +40,7 @@ function checkWin() {
 boxes.forEach((box, index) => {
     box.addEventListener('click', () => {
         if (box.innerText === '' && !gameover) {
+            clicks--;
             if (turnX) {
                 box.innerText = 'X';
                 box.classList.add('x');
@@ -58,6 +60,7 @@ boxes.forEach((box, index) => {
                 let winnermessage = document.getElementById("winnermessage");
                 countermessage.style.display = 'block';
                 winnermessage.style.display = "block";
+                winnermessage.innerHTML = `Winner of the game is <span id="winner"></span>`;
                 let counter = document.getElementById("counter");
                 let winnerName = document.getElementById("winner");
                 winnerName.innerHTML = winner;
@@ -77,6 +80,13 @@ boxes.forEach((box, index) => {
                 resetbtn.addEventListener('click', () => {
                     clearInterval(countdown);
                 });
+                clicks = 9;
+            }
+            if(clicks == 0){
+                let winnermessage = document.getElementById("winnermessage");
+                winnermessage.innerHTML = `No one wins the game, it's a draw. Please click on the Reset Game button.`;
+                winnermessage.style.display = "block";
+                clicks = 9;
             }
         }
     });
